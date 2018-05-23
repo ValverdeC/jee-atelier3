@@ -1,9 +1,11 @@
 package com.microservices.rooms.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Room {
@@ -11,15 +13,40 @@ public class Room {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int id;
+	
+	@NotNull
+	@Column(name = "estLancee")
+	private Boolean estLancee;
+	
+	@NotNull
+	@Column(name = "idJoueur1")
 	private int idJoueur1;
-	private int idJoueur2;
+	
+	@Column(name = "idJoueur2")
+	private int idJoueur2 = -1;
+	
+	@NotNull
+	@Column(name = "idCarteJoueur1")
 	private int idCarteJoueur1;
-	private int idCarteJoueur2;
+	
+	@Column(name = "idCarteJoueur2")
+	private int idCarteJoueur2 = -1;
+	
+	@NotNull
+	@Column(name = "nbTour")
 	private int nbTour;
-	private int nbTourJoueur1;
-	private int nbTourJoueur2;
-	private int hpCarte1;
-	private int hpCarte2;
+	
+	@Column(name = "nbTourJoueur1")
+	private int nbTourJoueur1 = 0;
+	
+	@Column(name = "nbTourJoueur2")
+	private int nbTourJoueur2 = 0;
+	
+	@Column(name = "hpCarte1")
+	private int hpCarte1 = -1;
+	
+	@Column(name = "hpCarte2")
+	private int hpCarte2 = -1;
 	
 	
 	/************************/
@@ -32,6 +59,12 @@ public class Room {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public boolean isEstLancee() {
+		return estLancee;
+	}
+	public void setEstLancee(boolean estLancee) {
+		this.estLancee = estLancee;
 	}
 	public int getIdJoueur1() {
 		return idJoueur1;
@@ -88,4 +121,10 @@ public class Room {
 		this.hpCarte2 = hpCarte2;
 	}
 	
+	public void incrementNbTourJoueur1() {
+		this.nbTourJoueur1++;
+	}
+	public void incrementNbTourJoueur2() {
+		this.nbTourJoueur2++;
+	}
 }
