@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
         <!-- Site Properties -->
-        <title>Create Room - Semantic</title>
+        <title>Grid Example - Semantic</title>
 
         <link rel="stylesheet" type="text/css" href="lib/Semantic-UI-CSS-master/semantic.min.css">
         <link rel="stylesheet" type="text/css" href="css/custom.css">
@@ -39,22 +39,26 @@
             <div class="column"></div>
             <div class="column"></div>
             <div class="column">
-                <form class="ui form" action="" method="GET">
+                <form id="roomForm" class="ui form">
                     <h3 class="ui dividing header">Create a Room</h3>
                     <div class="field">
                         <label>Room Name</label>
-                        <input type="text" name="room-name" id="roomNameId" placeholder="First Name">
+                        <input type="text" name="room-name" id="roomNameId" placeholder="Name">
                     </div>
                     <div class="field">
                         <label>Bet</label>
-                        <input type="text" name="bet-name" id="roomBetId" placeholder="Last Name">
+                        <input type="text" name="bet-name" id="roomBetId" placeholder="Bet">
+                    </div>
+                    <div class="field">
+                        <label>Hit number</label>
+                        <input type="text" name="hit-name" id="roomHitId" placeholder="Number of hit">
                     </div>
 
 
                     <div class="ui buttons">
                         <button class="ui button" id="cancelButtonId">Cancel</button>
                         <div class="or"></div>
-                        <button class="ui positive  labeled icon button" id="createButtonId">
+                        <button class="ui positive labeled icon button" id="createButtonId">
                             <i class="plus icon"></i>
                             Submit
                         </button>
