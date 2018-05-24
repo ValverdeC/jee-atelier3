@@ -1,4 +1,4 @@
-package com.microservices.rooms.model;
+package com.sample.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +9,16 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class Room {
-
+	
+	public Room(int idJoueur1, int idCarteJoueur1, int nbTour, String name, int bet) {
+		this.estLancee = false;
+		this.idJoueur1 = idJoueur1;
+		this.idCarteJoueur1 = idCarteJoueur1;
+		this.nbTour = nbTour;
+		this.name = name;
+		this.bet = bet;
+	}
+	
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int id;
