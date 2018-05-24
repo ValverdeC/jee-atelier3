@@ -100,7 +100,7 @@ public class Card {
 	public void setPrice(int price) {
 		this.price=price;
 	}
-	public int getOwnerId(int ownerId) {
+	public int getOwnerId() {
 		return this.ownerId;
 	}
 	public void setOwnerId(int ownerId) {

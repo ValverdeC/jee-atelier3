@@ -86,5 +86,12 @@ public class CardController {
 	public List<Card> getCardAvailable() {
 		return this.service.getCardAvailable();
 	}
+	
+	@RequestMapping("card/buy/{cardID}/{userId}")
+	public void buyCard(@PathVariable (value = "userId") int userId,
+						@PathVariable (value = "cardId") int cardId) {
+		
+		this.service.buyCard(userId, cardId);
+	}
 
 }
