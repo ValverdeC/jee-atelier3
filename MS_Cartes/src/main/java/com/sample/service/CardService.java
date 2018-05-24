@@ -93,4 +93,45 @@ public class CardService {
 	public List<Card> getCardAvailable() {
 		return this.repository.findByOwnerId(0);
 	}
+	
+	/**
+	 * 
+	 * @param idUser
+	 * @param idCard
+	 * @return
+	 */
+	public Card buyCard(int idUser, int idCard) {
+		
+		//todo: check auth
+		//todo: get wallet + check si assez de  €€€€$$$$££££
+		Card card = this.repository.findOne(idCard);
+		
+		if(card==null) {
+			throw new ResourceNotFoundException("Carte numéro: "+idCard+" inexistante");	
+		}
+		if(card.getOwnerId()!=0){
+			throw new ResourceNotFoundException("Carte numéro: "+idCard+" inexistante");
+		}else {
+			card.setOwnerId(idUser);
+			return this.repository.save(card);
+			//todo: update wallet
+		}
+	}
+	
+	public Card sellCard(int idOwner, int idCard) {
+		
+		//todo: check auth
+		Card card = this.repository.findOne(idCard);
+		
+		if(card==null) {
+			throw new ResourceNotFoundException("Carte numéro: "+idCard+" inexistante");	
+		}
+		if(card.getOwnerId()!=idOwner){
+			throw new ResourceNotFoundException("Carte numéro: "+idCard+" inexistante");
+		}else {
+			card.setOwnerId(0);
+			//todo: ajouter l'appel pour ajouter l'argent dans le portefeuille de l'ancien propriétaire
+			return this.repository.save(card);
+		}
+	}
 }
