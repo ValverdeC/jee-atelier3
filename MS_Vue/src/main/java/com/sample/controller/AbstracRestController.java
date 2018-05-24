@@ -1,5 +1,6 @@
 package com.sample.controller;
 
+import org.json.JSONObject;
 import org.springframework.web.client.RestTemplate;
 import org.json.JSONString;
 
@@ -7,13 +8,13 @@ public class AbstracRestController {
 
     RestTemplate restTemplate = new RestTemplate();
 
-    public JSONString get(String urlP){
-        JSONString json = restTemplate.getForObject(urlP, JSONString.class);
+    public String get(String urlP){
+        String json = restTemplate.getForObject(urlP, String.class);
         return json;
     }
 
-    public JSONString post(String urlP, String request){
-        JSONString json = restTemplate.postForObject(urlP, request, JSONString.class);
+    public String post(String urlP, String request){
+        String json = restTemplate.postForObject(urlP, request, String.class);
         return json;
     }
 
