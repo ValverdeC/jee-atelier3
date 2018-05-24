@@ -20,25 +20,22 @@
             <div class="column"></div>
             <div class="column"></div>
             <div class="column">
-                <form class="ui form" action="./addData" method="GET">
-                    <h3 class="ui dividing header">Add User Information</h3>
+                <form class="ui form" id="loginForm">
+                    <h3 class="ui dividing header">Login</h3>
                     <div class="field">
-                        <label>Surname Name</label>
-                        <input type="text" name="first-name" placeholder="First Name">
+                        <label>Email</label>
+                        <input type="text" name="email" placeholder="email">
                     </div>
                     <div class="field">
-                        <label>Last Name</label>
-                        <input type="text" name="last-name" placeholder="Last Name">
+                        <label>Password</label>
+                        <input type="password" name="pwd">
                     </div>
-                    <div class="field">
-                        <div class="ui checkbox field">
-                            <input type="checkbox" name="pvisible">
-                            <label>Make my profile visible</label>
-                        </div>
-                    </div>
-                    <button class="ui button" type="submit" >Submit</button>
+                    <button class="ui button">Submit</button>
                 </form>
             </div>
         </div>
+
+        <script src="./lib/jquery-3.3.1.min.js"></script>
+        <script src="./js/auth.js"></script>
     </body>
 </html>

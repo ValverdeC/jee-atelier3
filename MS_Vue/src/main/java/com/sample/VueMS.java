@@ -3,8 +3,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CardGameApp {
+public class VueMS {
 	public static void main(String[] args) {
-		SpringApplication.run(CardGameApp.class, args);
+		SpringApplication.run(VueMS.class, args);
 	}
 }
