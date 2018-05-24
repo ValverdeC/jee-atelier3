@@ -10,14 +10,15 @@ import java.math.BigDecimal;
 public class User {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
     @Column(unique = true)
     private String email;
     private String password;
     private String token;
-    private BigDecimal wallet;
+    @Column(columnDefinition = "decimal(10, 2) default '0.00'")
+    private BigDecimal wallet = BigDecimal.ZERO;
 
     public User(Integer id, String name, String email, String password) {
         this.id = id;
@@ -81,5 +82,18 @@ public class User {
     @JsonProperty
     public void setWallet(BigDecimal wallet) {
         this.wallet = wallet;
+    }
+
+    public BigDecimal addToWallet(BigDecimal amount) {
+        this.wallet = this.wallet.add(amount);
+        return this.wallet;
+    }
+
+    public BigDecimal removeFromWallet(BigDecimal amount) {
+        this.wallet = this.wallet.subtract(amount);
+        if (this.wallet.compareTo(BigDecimal.ZERO) < 0) {
+            this.wallet = BigDecimal.ZERO;
+        }
+        return this.wallet;
     }
 }
