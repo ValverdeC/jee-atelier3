@@ -1,27 +1,26 @@
 package com.sample.controller;
 
 import org.springframework.web.client.RestTemplate;
-import org.json.JSONString;
 
 public class AbstracRestController {
 
     RestTemplate restTemplate = new RestTemplate();
 
-    public JSONString get(String urlP){
-        JSONString json = restTemplate.getForObject(urlP, JSONString.class);
+    public String get(String urlP){
+    	String json = restTemplate.getForObject(urlP, String.class);
         return json;
     }
 
-    public JSONString post(String urlP, String request){
-        JSONString json = restTemplate.postForObject(urlP, request, JSONString.class);
+    public String post(String urlP, String body){
+    	String json = restTemplate.postForObject(urlP, body, String.class);
         return json;
     }
 
-    public JSONString put(String urlP, String request){
+    public String put(String urlP, String request){
         return null;
     }
 
-    public JSONString delete(String urlP){
+    public String delete(String urlP){
         return null;
     }
 }
