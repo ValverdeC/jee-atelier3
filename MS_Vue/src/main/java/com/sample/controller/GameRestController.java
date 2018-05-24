@@ -17,8 +17,7 @@ public class GameRestController extends AbstracRestController{
     @RequestMapping(value = "createRoom", method = RequestMethod.POST, produces = "application/json")
     public String createRoom(@RequestBody Room roomCreator) {
     	Gson gson = new Gson();
-        this.post("http://localhost:4200/game/room", gson.toJson(roomCreator));
-        return null;
+        return this.post("http://localhost:4200/game/room", gson.toJson(roomCreator));
     }
 
     @RequestMapping(value = "joinRoom/{roomId}", method = RequestMethod.POST, produces = "application/json")

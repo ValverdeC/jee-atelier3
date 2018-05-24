@@ -3,8 +3,7 @@ $(document ).ready(function(){
 	getCards();
         
      $("#createRoomButtonId").click(function(){
-        alert("Create Card button clicked ");
-        //TO DO
+    	 window.location = "/create";
     }); 
     
 });
