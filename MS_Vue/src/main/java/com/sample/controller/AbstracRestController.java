@@ -1,5 +1,8 @@
 package com.sample.controller;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 
 public class AbstracRestController {
@@ -11,8 +14,12 @@ public class AbstracRestController {
         return json;
     }
 
-    public String post(String urlP, String body){
-    	String json = restTemplate.postForObject(urlP, body, String.class);
+    public String post(String urlP, String body) {
+    	HttpHeaders httpHeader = new HttpHeaders();
+    	httpHeader.setContentType(MediaType.APPLICATION_JSON);
+    	HttpEntity<String> entity = new HttpEntity<String>(body, httpHeader);
+    	
+    	String json = restTemplate.postForObject(urlP, entity, String.class);
         return json;
     }
 
