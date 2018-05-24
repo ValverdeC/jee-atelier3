@@ -23,13 +23,14 @@ public class RoomController {
 	private RoomService service;
 	
 	/**
-	 * Créer une room
+	 * Créer une room avec le joueur 1 et sa carte
 	 * 
 	 * @param room
 	 * @return Room
 	 */
 	@PostMapping("/game/room")
 	public Room createRoom(@Valid @RequestBody Room room) {
+		// TODO: Check si user et carte existent
 		return this.service.createRoom(room);
 	}
 	
@@ -75,6 +76,7 @@ public class RoomController {
 	 */
 	@PostMapping("/game/room/{id}/join/{idJoueur2}/{idCarteJoueur2}")
 	public Room joinRoom(@PathVariable int id, @PathVariable int idJoueur2, @PathVariable int idCarteJoueur2) {
+		// TODO: Check si user et carte existent
 		return this.service.joinRoom(id, idJoueur2, idCarteJoueur2);
 	}
 	
