@@ -32,7 +32,7 @@ public class VueController {
         return "roomList.html";
     }
 
-    @RequestMapping("/create")
+    @RequestMapping("/game/create")
     public String showGameCreatePage() {
         return "createRoom.html";
     }

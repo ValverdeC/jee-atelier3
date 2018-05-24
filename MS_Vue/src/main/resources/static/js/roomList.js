@@ -1,7 +1,11 @@
 $(document ).ready(function(){
     
-	getCards();
-        
+   
+    
+    for(i=0;i<5;i++){
+        addRoomToList(i,"room "+ i,"user" +i, 500);
+    }
+    
      $("#createRoomButtonId").click(function(){
         alert("Create Card button clicked ");
         //TO DO
@@ -13,24 +17,17 @@ function getCards(){
     var cards = [];
 
     $.ajax({
-    		url: 'http://localhost:8080/api/game/rooms',
+    		url: 'http://localhost:8080/api/cards/',
     		type: 'GET',
-    		complete : function(resultat, statut) {
-    			var cards = resultat.responseJSON;
-    			
-    			if (cards != null) {
-    				cards.forEach((card) => {
-    					addRoomToList(card.id, card.name, card.idJoueur1, card.bet);
-    				})
-    			}
-    			
+    		complete : function(resultat, statut){
+    			var cards = resultat;
     			return cards;
            	}
     });
 }
 
 
-function addRoomToList(id, name, user, bet){
+function addRoomToList(id,name, user, bet){
     
     content="<td> "+name+" </td> \
                             <td> "+user+" </td> \
