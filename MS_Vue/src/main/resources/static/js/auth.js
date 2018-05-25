@@ -6,7 +6,7 @@ $("#loginForm").submit(function(event){
 
 $("#signupForm").submit(function(event){
     event.preventDefault();
-    signup(this);
+    signup();
 });
 
 function login(form){
@@ -29,28 +29,29 @@ function login(form){
     });
 }
 
-function signup(form){
+function signup() {
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var pwd = document.getElementById("pwd1").value;
+    var pwd2 = document.getElementById("pwd2").value;
 
-    if(form){
-        var name = form.name.value;
-        var email = form.email.value;
-        var pwd = form.pwd.value;
-        var pwd2 = form.pwdConfirm.value;
-
-        if(pwd == pwd2){
-            $.post({
-                url: "/api/users/signup",
-                data : {
-                    "name" : name,
-                    "email" : email,
-                    "password" : pwd
-                },
-                success: function(resultat, status){
-                    alert("Signed up !");
-                    //stocker token
-                }
-            });
-        }
+    if(pwd == pwd2){
+    	var user = {
+    		name,
+    		email,
+    		pwd
+		};
+        $.ajax({
+			url: 'http://localhost:8080/api/users/signup',
+			type: 'POST',
+			contentType: "application/json; charset=utf-8",
+			dataType: "json",
+			data: JSON.stringify(user),
+			success: function(msg) {
+				console.log("success")
+				window.location = "/";
+			}
+		});
     }
 
 }
