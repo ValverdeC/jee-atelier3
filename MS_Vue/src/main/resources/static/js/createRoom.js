@@ -5,10 +5,9 @@ $(document ).ready(function(){
     
     $("#roomForm").submit(function(e){
     	e.preventDefault();
-    	
     	var roomCreator = {
     		estLancee: false,
-    		idJoueur1: 123,
+    		idJoueur1: JSON.parse(localStorage.getItem('user')).id,
     		idCarteJoueur1: 34,
     		nbTour: document.getElementById("roomHitId").value,
 			name: document.getElementById("roomNameId").value,

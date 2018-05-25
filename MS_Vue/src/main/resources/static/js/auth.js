@@ -1,3 +1,10 @@
+$("#noAccountId").click(function() {
+	window.location = "/signup";
+});
+
+$("#accountYetId").click(function() {
+	window.location = "/signin";
+});
 
 $("#loginForm").submit(function(event){
     event.preventDefault();
@@ -12,23 +19,6 @@ $("#signupForm").submit(function(event){
 function login(form){
 	var email = document.getElementById("email").value;
     var pwd = document.getElementById("pwd").value;
-
-    /*$.post({
-        url: "/api/users/login",
-        data : {
-            "email" : email,
-            "password" : pwd
-        },
-        error: function(res,err){
-            console.error(res);console.error(err);
-        },
-        success: function(resultat, status){
-            localStorage.setItem("token",response.body.token);
-            localStorage.setItem("userId",response.body.userId);
-            alert("Logged in !");
-            //stocker token
-        }
-    });*/
     var user = {
 		email,
 		password: pwd

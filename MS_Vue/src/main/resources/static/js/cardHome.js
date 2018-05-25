@@ -10,6 +10,6 @@ $(document).ready(function(){
     $("#sellButtonId").click(function(){
         //alert("Sell button clicked ");
         window.location = "/market";
-    });    
+    });  
 });
 
