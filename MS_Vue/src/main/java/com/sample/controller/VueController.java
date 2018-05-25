@@ -15,6 +15,11 @@ public class VueController {
     public String showLoginPage() {
         return "login.html";
     }
+    
+    @RequestMapping("/signup")
+    public String showSignupPage() {
+        return "subscribe.html";
+    }
 
     @RequestMapping("/search")
     public String showSearchPage() {
