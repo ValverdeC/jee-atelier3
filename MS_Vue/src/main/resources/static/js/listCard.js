@@ -1,7 +1,7 @@
 var currentCardId;
 
 $(document ).ready(function(){
-
+	
     var cards = getCards();
     currentCardId = 0
 

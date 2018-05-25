@@ -1,5 +1,6 @@
 package com.sample.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,9 +29,9 @@ public class GameRestController extends AbstracRestController{
     
     @GetMapping("/rooms")
     public Room[] getRooms() throws Exception {
-    	String roomsString = this.get("http://localhost:4200/game/rooms");
+    	ResponseEntity<String> roomsString = this.get("http://localhost:4200/game/rooms");
     	Gson gson = new Gson();
-    	Room rooms[] = gson.fromJson(roomsString, Room[].class);
+    	Room rooms[] = gson.fromJson(roomsString.getBody(), Room[].class);
     	return rooms;
     }
 }

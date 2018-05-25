@@ -1,5 +1,6 @@
 package com.sample.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -10,21 +11,21 @@ public class CardRestController extends AbstracRestController{
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
     public String getCards(){
-        String cards = this.get(apiUrl + "cards");
+        ResponseEntity<String> cards = this.get(apiUrl + "cards");
 
-        return cards;
+        return cards.getBody();
     }
 
     @RequestMapping(value = "{cardId}", method = RequestMethod.GET, produces = "application/json")
     public String getCardById(@PathVariable int cardId){
-        String card = this.get(apiUrl + "card/" + cardId);
-        return card;
+    	ResponseEntity<String> cards = this.get(apiUrl + "card/" + cardId);
+        return cards.getBody();
     }
 
     @RequestMapping(value = "search/{cardName}", method = RequestMethod.GET, produces = "application/json")
     public String getCardByName(@PathVariable String cardName){
-        String card = this.get(apiUrl + "cards/search" + cardName);
-        return card;
+    	ResponseEntity<String> cards = this.get(apiUrl + "cards/search" + cardName);
+        return cards.getBody();
     }
 
     @RequestMapping(value = "sell/{cardId}/{userId}", method = RequestMethod.POST, produces = "application/json")

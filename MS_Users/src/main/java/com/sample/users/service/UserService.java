@@ -28,13 +28,14 @@ public class UserService {
         return user;
     }
 
-    public User addUser(User user) throws EmailAlreadyUsedException {
+    public String addUser(User user) throws EmailAlreadyUsedException {
         if (userRepository.findByEmail(user.getEmail()) != null) {
             throw new EmailAlreadyUsedException();
         }
         String key = getSaltString();
         user.setToken(key);
-        return this.userRepository.save(user);
+        user = userRepository.save(user);
+        return user.getToken();
     }
 
     public void updateUser(User user) {

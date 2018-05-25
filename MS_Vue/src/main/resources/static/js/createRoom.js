@@ -1,5 +1,4 @@
-$(document ).ready(function(){
-
+$(document ).ready(function(){	
     $("#cancelButtonId").click(function(){
     	window.location = "/rooms";
     });
