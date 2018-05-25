@@ -1,16 +1,17 @@
+var currentCardId;
+
 $(document ).ready(function(){
 
     var cards = getCards();
+    currentCardId = 0
 
-    if(cards[0])
-        fillCurrentCard(cards[0]);
-
+    if(cards[currentCardId])
+        fillCurrentCard(cards[currentCardId]);
 
     for(var i in cards){
         var card = cards[i];
         addCardToList(card);
     }
-
 
 });
 
@@ -19,6 +20,7 @@ function getCards(){
 
 	$.ajax({
 		url: 'http://localhost:8080/api/cards',
+		headers: {"Authorization": localStorage.getItem('token')},
 		type: 'GET',
 		//Placer info
 		success : function(resultat, statut){
@@ -34,15 +36,26 @@ function getCards(){
 
 }
 
-function sellCard(id){
+function sellCard(){
 
-    //TODO
+    $.post({
+        url: 'http://localhost:8080/api/cards/sell/'+ currentCardId +'/' + localStorage.getItem("userId"),
+        headers: {"Authorization": localStorage.getItem('token')},
+        success : function(resultat,status){
+            alert("Carte vendue");
+        },
+        error : function(resultat,status){
+            alert("Une erreur est survenue");
+        }
+    });
 }
 
 
 function fillCurrentCard(card){
     //FILL THE CURRENT CARD
     if(card){
+        currentCardId = card.id;
+
         $('#cardFamilyImgId')[0].src= card.imgUrlFamily;
         $('#cardFamilyNameId')[0].innerText= card.familyName;
         $('#cardImgId')[0].src=card.imgUrl;
@@ -71,7 +84,7 @@ function addCardToList(card){
     <td>"+card.defence+"</td> \
     <td>"+card.price+"$</td>\
     <td>\
-        <div class='ui vertical animated button' tabindex='0'>\
+        <div class='ui vertical animated button' onclick='fillCurrentCard(card)' tabindex='0'>\
             <div class='hidden content'>Sell</div>\
     <div class='visible content'>\
         <i class='shop icon'></i>\
