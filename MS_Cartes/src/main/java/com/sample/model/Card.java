@@ -1,17 +1,11 @@
 package com.sample.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Card {
@@ -19,17 +13,51 @@ public class Card {
 	// Id auto-généré
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private int id;
+	
+	@NotNull
+	@Column(name = "name")
 	private String name;
+	
+	@NotNull
+	@Column(name = "description")
 	private String description;
+	
+	@NotNull
+	@Column(name = "imgUrl")
 	private String imgUrl;
+	
+	@NotNull
+	@Column(name = "family")
 	private String family;
+	
+	@NotNull
+	@Column(name = "affinity")
 	private String affinity;
+	
+	@NotNull
+	@Column(name = "ownerId")
 	private int ownerId;
+	
+	@NotNull
+	@Column(name = "hp")
 	private int hp;	
+	
+	@NotNull
+	@Column(name = "price")
 	private int price;
+	
+	@NotNull
+	@Column(name = "energy")
 	private int energy;
+	
+	@NotNull
+	@Column(name = "attack")
 	private int attack;
+	
+	@NotNull
+	@Column(name = "defence")
 	private int defence;
 	
 	/**
