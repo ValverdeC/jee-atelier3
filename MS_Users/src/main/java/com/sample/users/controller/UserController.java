@@ -1,6 +1,7 @@
 package com.sample.users.controller;
 
 import com.sample.users.exception.EmailAlreadyUsedException;
+import com.sample.users.exception.ParameterNotSpecifiedException;
 import com.sample.users.exception.UserNotFoundException;
 import com.sample.users.model.User;
 import com.sample.users.service.UserService;
@@ -34,7 +35,7 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/auth/signup")
-    private String signup(@RequestBody User user) throws EmailAlreadyUsedException {
+    private String signup(@RequestBody User user) throws EmailAlreadyUsedException, ParameterNotSpecifiedException {
         return userService.addUser(user);
     }
 
