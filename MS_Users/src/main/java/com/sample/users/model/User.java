@@ -28,6 +28,7 @@ public class User {
     }
 
     public User() {
+
     }
 
     public Integer getId() {
@@ -84,16 +85,16 @@ public class User {
         this.wallet = wallet;
     }
 
-    public BigDecimal addToWallet(BigDecimal amount) {
+    public void addToWallet(BigDecimal amount) {
         this.wallet = this.wallet.add(amount);
-        return this.wallet;
+        this.wallet = this.wallet.setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 
-    public BigDecimal removeFromWallet(BigDecimal amount) {
+    public void removeFromWallet(BigDecimal amount) {
         this.wallet = this.wallet.subtract(amount);
+        this.wallet = this.wallet.setScale(2, BigDecimal.ROUND_HALF_UP);
         if (this.wallet.compareTo(BigDecimal.ZERO) < 0) {
             this.wallet = BigDecimal.ZERO;
         }
-        return this.wallet;
     }
 }
