@@ -1,7 +1,6 @@
 package com.sample.users.service;
 
-import com.sample.users.exception.EmailAlreadyUsedException;
-import com.sample.users.exception.UserNotFoundException;
+import com.sample.users.exception.*;
 import com.sample.users.model.User;
 import com.sample.users.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +27,22 @@ public class UserService {
         return user;
     }
 
-    public String addUser(User user) throws EmailAlreadyUsedException {
+    public String addUser(User user) throws EmailAlreadyUsedException, ParameterNotSpecifiedException {
+        if (user.getPassword() == null || user.getPassword().isEmpty()) {
+            throw new PasswordNotSpecifiedException();
+        }
+        if (user.getEmail() == null || user.getEmail().isEmpty()) {
+            throw new EmailNotSpecifiedException();
+        }
+        if (user.getName() == null || user.getName().isEmpty()) {
+            throw new NameNotSpecifiedException();
+        }
         if (userRepository.findByEmail(user.getEmail()) != null) {
             throw new EmailAlreadyUsedException();
         }
         String key = getSaltString();
         user.setToken(key);
-        user = userRepository.save(user);
+        userRepository.save(user);
         return user.getToken();
     }
 
@@ -81,7 +89,7 @@ public class UserService {
         StringBuilder salt = new StringBuilder();
         SecureRandom rnd = new SecureRandom();
         while (salt.length() < 32) { // length of the random string.
-            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            int index = rnd.nextInt(SALTCHARS.length());
             salt.append(SALTCHARS.charAt(index));
         }
         return salt.toString();
