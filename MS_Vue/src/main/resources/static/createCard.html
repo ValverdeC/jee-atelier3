@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Standard Meta -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+        <!-- Site Properties -->
+        <title>Grid Example - Semantic</title>
+
+        <link rel="stylesheet" type="text/css" href="lib/Semantic-UI-CSS-master/semantic.min.css">
+        <link rel="stylesheet" type="text/css" href="css/custom.css">
+
+    </head>
+
+    <body>
+    	<div class="ui clearing segment">
+            <h3 class="ui right floated header">
+                <i class="user circle outline icon"></i>
+                <div class="content">
+                    <span id="userNameId">Jdoe</span>
+                    <div class="sub header"><span>5000</span>$</div>
+                </div>
+            </h3>
+
+            <h3 class="ui left floated header">
+                <div class="content">
+                    <i class="plus icon"></i>
+                    ADD CARD
+                    <div class="sub header">Add a card</div>
+                </div>
+            </h3>
+        </div>
+        
+        <div class="ui five column grid">
+            <div class="row"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column">
+                <form id="card-form" class="ui form">
+                    <h3 class="ui dividing header">Add Card Form</h3>
+                    <div class="field">
+                        <label>Name</label>
+                        <input id="name" type="text" name="name" placeholder="Name">
+                    </div>
+                    <div class="field">
+                        <label>Description</label>
+                        <textarea id="description" name="description" rows="5" cols="50"></textarea>
+                    </div>
+                    <div class="field">
+                        <label>Image URL</label>
+                        <input id="imgUrl" type="text" name="imgUrl" placeholder="Image URL">
+                    </div>
+
+					<div class="field">
+                        <label>Family</label>    
+	                    <select name="family" class="ui dropdown" id="family">
+							<option value="A">A</option>
+							<option value="B">B</option>
+							<option value="C">C</option>
+							<option value="D">D</option>
+							<option value="E">E</option>
+							<option value="F">F</option>
+						</select>
+					</div>
+					
+					<div class="field">
+                        <label>Affinity</label>
+						<select name="affinity" class="ui dropdown" id="affinity">
+							<option value="A">A</option>
+							<option value="B">B</option>
+							<option value="C">C</option>
+							<option value="D">D</option>
+							<option value="E">E</option>
+							<option value="F">F</option>
+						</select>
+					</div>
+					
+					<div class="slidecontainer">					  
+					  <label>HP:</label>
+					  <input id="hp" type="range" min="0" max="100" value="50" class="slider" name="hp">
+					</div>
+					
+					<div class="slidecontainer">					  
+					  <label>Energy:</label>
+					  <input id="energy" type="range" min="0" max="100" value="50" class="slider" name="energy">
+					</div>
+					
+					<div class="slidecontainer">					  
+					  <label>Attack:</label>
+					  <input id="attack" type="range" min="0" max="100" value="50" class="slider" name="attack">
+					</div>
+					
+					<div class="slidecontainer">					  
+					  <label>Defence:</label>
+					  <input id="defence" type="range" min="0" max="100" value="50" class="slider" name="defence">
+					</div>
+					
+					<div class="field">
+                        <label>Price</label>
+                        <input id="price" type="text" name="price" placeholder="Price">
+                    </div>
+
+                    <div class="ui buttons">
+                        <button class="ui button" id="cancelButtonId">Cancel</button>
+                        <div class="or"></div>
+                        <button class="ui positive labeled icon button" id="createButtonId">
+                            <i class="plus icon"></i>
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script src="./lib/jquery-3.3.1.min.js"></script>
+        <script src="./lib/Semantic-UI-CSS-master/semantic.js"></script>
+        <script src="./js/checkAuth.js"></script>
+        <script src="./js/createCard.js"></script> 
+    </body>
+</html>

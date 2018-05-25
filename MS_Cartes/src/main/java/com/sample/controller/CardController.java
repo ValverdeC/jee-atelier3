@@ -50,10 +50,9 @@ public class CardController {
 	 * @param card
 	 * @return
 	 */
-	@PostMapping("/user/{userId}/card")
-    public Card addCard(@PathVariable (value = "userId") int userId,
-                                 @Valid @RequestBody Card card) {
-        return this.service.add(card, userId);
+	@PostMapping("/card")
+    public Card addCard(@Valid @RequestBody Card card) {
+        return this.service.add(card);
     }
 	
 	/**

@@ -45,15 +45,8 @@ public class CardService {
 	 * @param id
 	 * @return Card
 	 */
-	public Card add(Card card, int id) {
-		 
-		//Todo: ajouter la vérification de l'existance du user
-		if (true) {
-			 card.setOwnerId(id);
-			 return this.repository.save(card);
-		 } else {
-			 throw new ResourceNotFoundException("UserId " + id + " not found");
-		 }
+	public Card add(Card card) {
+		return this.repository.save(card);
 	}
 	
 	/**

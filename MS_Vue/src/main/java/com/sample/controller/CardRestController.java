@@ -3,6 +3,9 @@ package com.sample.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.google.gson.Gson;
+import com.sample.model.Room;
+
 @RestController
 @RequestMapping("/api/cards")
 public class CardRestController extends AbstracRestController{
@@ -37,6 +40,12 @@ public class CardRestController extends AbstracRestController{
     @RequestMapping(value = "buy/{cardId}/{userId}", method = RequestMethod.POST    , produces = "application/json")
     public String buyCard(@PathVariable int cardId, @PathVariable int userId){
         String result = this.post(apiUrl + "buy/" + cardId + "/" + userId, "");
+        return result;
+    }
+    
+    @RequestMapping(value = "card", method = RequestMethod.POST, produces = "application/json")
+    public String createCard(@RequestBody String body){
+    	String result = this.post(apiUrl + "card" , body);
         return result;
     }
 

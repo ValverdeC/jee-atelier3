@@ -10,6 +10,10 @@ $(document).ready(function(){
     $("#sellButtonId").click(function(){
         //alert("Sell button clicked ");
         window.location = "/market";
+    });    
+    $("#addButtonId").click(function(){
+        //alert("Add button clicked ");
+        window.location = "/addCard";
     });  
 });
 

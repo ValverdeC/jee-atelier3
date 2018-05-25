@@ -41,6 +41,11 @@ public class VueController {
     public String showGameCreatePage() {
         return "createRoom.html";
     }
+    
+    @RequestMapping("/addCard")
+    public String showCardCreatePage() {
+        return "createCard.html";
+    }
 
     @RequestMapping("/game/selectCard")
     public String showGameSelectCardPage() {
