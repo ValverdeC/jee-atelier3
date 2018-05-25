@@ -1,22 +1,13 @@
-var currentCardId;
+var currentCardId = 0;
+var cards = [];
 
 $(document ).ready(function(){
 	
-    var cards = getCards();
-    currentCardId = 0
-
-    if(cards[currentCardId])
-        fillCurrentCard(cards[currentCardId]);
-
-    for(var i in cards){
-        var card = cards[i];
-        addCardToList(card);
-    }
+    getCards();
 
 });
 
 function getCards(){
-    var cards = []
 
 	$.ajax({
 		url: 'http://localhost:8080/api/cards',
@@ -30,7 +21,14 @@ function getCards(){
        	    alert("Une erreur est survenue");
        	},
        	complete : function(){
-       	    return cards;
+            currentCardId = 0
+
+            for(var i = 0 ; i < cards.length ; i++){
+                addCardToList(cards[i]);
+            }
+
+            if(cards[currentCardId])
+                fillCurrentCard(cards[currentCardId].id);
        	}
 	});
 
@@ -38,10 +36,20 @@ function getCards(){
 
 function sellCard(){
 
+    var user = JSON.parse(localStorage.getItem('user'));
+
     $.post({
-        url: 'http://localhost:8080/api/cards/sell/'+ currentCardId +'/' + localStorage.getItem("userId"),
+        url: 'http://localhost:8080/api/cards/sell/'+ currentCardId +'/' + user.id,
         headers: {"Authorization": localStorage.getItem('token')},
         success : function(resultat,status){
+            $.get({
+                url : "http://localhost:8080/api/users/me",
+                headers: {"Authorization": localStorage.getItem('token')},
+               	type: 'GET',
+               	success : function(resultat, statut){
+                    localStorage.setItem("user",resultat);
+                },
+            });
             alert("Carte vendue");
         },
         error : function(resultat,status){
@@ -51,13 +59,24 @@ function sellCard(){
 }
 
 
-function fillCurrentCard(card){
+function fillCurrentCard(cardId){
+
+    var card;
+
+    for(var i = 0 ; i < cards.length ; i++){
+        var c = cards[i];
+        console.log(c);
+        if(c.id == cardId){
+            card = c;
+        }
+    }
+
     //FILL THE CURRENT CARD
     if(card){
         currentCardId = card.id;
 
         $('#cardFamilyImgId')[0].src= card.imgUrlFamily;
-        $('#cardFamilyNameId')[0].innerText= card.familyName;
+        $('#cardFamilyNameId')[0].innerText= card.family;
         $('#cardImgId')[0].src=card.imgUrl;
         $('#cardNameId')[0].innerText=card.name;
         $('#cardDescriptionId')[0].innerText=card.description;
@@ -77,14 +96,14 @@ function addCardToList(card){
     <img  class='ui avatar image' src='"+card.imgUrl+"'> <span>"+card.name+" </span> \
    </td> \
     <td>"+card.description+"</td> \
-    <td>"+card.familyName+"</td> \
+    <td>"+card.family+"</td> \
     <td>"+card.hp+"</td> \
     <td>"+card.energy+"</td> \
     <td>"+card.attack+"</td> \
     <td>"+card.defence+"</td> \
     <td>"+card.price+"$</td>\
     <td>\
-        <div class='ui vertical animated button' onclick='fillCurrentCard(card)' tabindex='0'>\
+        <div class='ui vertical animated button' onclick='fillCurrentCard("+card.id+")' tabindex='0'>\
             <div class='hidden content'>Sell</div>\
     <div class='visible content'>\
         <i class='shop icon'></i>\

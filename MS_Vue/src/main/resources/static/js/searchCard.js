@@ -12,7 +12,7 @@ function cardSearch(form){
 	var name = form.search.value;
 
 	$.ajax({
-		url: 'http://localhost:8080/api/cards/search/' . name,
+		url: 'http://localhost:8080/api/cards/search/' + name,
 		headers: {"Authorization": localStorage.getItem('token')},
 		type: 'GET',
 		//Placer info
@@ -22,6 +22,25 @@ function cardSearch(form){
 			fillCurrentCard(card);
        	}
 	});
+}
+
+function buyCard(card){
+    $.ajax({
+        url: 'http://localhost:8080/api/buy/' + card.id + "/" + name,
+        headers: {"Authorization": localStorage.getItem('token')},
+        type: 'POST',
+        //Placer info
+        success : function(resultat, statut){
+             $.get({
+                url : "http://localhost:8080/api/users/me",
+                headers: {"Authorization": localStorage.getItem('token')},
+                type: 'GET',
+                success : function(resultat, statut){
+                    localStorage.setItem("user",resultat);
+                },
+             });
+        }
+    });
 }
 
 function fillCurrentCard(card){

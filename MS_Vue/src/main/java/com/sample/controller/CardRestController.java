@@ -32,15 +32,17 @@ public class CardRestController extends AbstracRestController{
     }
 
     @RequestMapping(value = "sell/{cardId}/{userId}", method = RequestMethod.POST, produces = "application/json")
-    public String sellCard(@PathVariable int cardId, @PathVariable int userId, @RequestHeader("Authorization") String autorization){
-        //TODO
-        return null;
+    public String sellCard(@PathVariable int cardId, @PathVariable int userId, @RequestHeader("Authorization") String authorization){
+        this.setHeader("Authorization", authorization);
+        ResponseEntity<String> res = this.get(apiUrl + "card/sell/" + cardId + "/" + userId);
+        return res.getBody();
     }
 
     @RequestMapping(value = "buy/{cardId}/{userId}", method = RequestMethod.POST    , produces = "application/json")
-    public String buyCard(@PathVariable int cardId, @PathVariable int userId){
-        String result = this.post(apiUrl + "buy/" + cardId + "/" + userId, "");
-        return result;
+    public String buyCard(@PathVariable int cardId, @PathVariable int userId, @RequestHeader("Authorization") String authorization){
+        this.setHeader("Authorization", authorization);
+        ResponseEntity<String> res = this.get(apiUrl + "card/buy/" + cardId + "/" + userId);
+        return res.getBody();
     }
     
     @RequestMapping(value = "card", method = RequestMethod.POST, produces = "application/json")

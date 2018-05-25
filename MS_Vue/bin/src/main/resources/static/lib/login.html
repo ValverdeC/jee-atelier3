@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="lib/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <script src="lib/jquery-3.3.1.min.js"></script>
+    <script src="lib/js.cookie.min.js"></script>
+</head>
+<body>
+<div class="ui five column grid">
+    <div class="row"></div>
+    <div class="column"></div>
+    <div class="column"></div>
+    <div class="column">
+        <form class="ui form" id="signin">
+            <h3 class="ui dividing header">Sign In</h3>
+            <div class="field">
+                <label>User Name</label>
+                <input type="text" name="first-name" placeholder="First Name">
+            </div>
+            <div class="field">
+                <label>Password</label>
+                <input type="text" name="last-name" placeholder="Last Name">
+            </div>
+            <button class="ui button" type="submit" >Submit</button>
+        </form>
+    </div>
+</div>
+<script>
+    $("#signin").submit(function(e) {
+        $.ajax({
+            url: "/signup",
+            type: 'POST',
+            data: JSON.stringify({
+                "name": "Test",
+                "email": "test@test.com",
+                "password": "test"
+            }),
+            contentType: "application/json",
+            success: function(result){
+                $.cookie("authToken", result);
+            }});
+        e.preventDefault();
+    });
+
+</script>
+
+<script>
+
+    function checkAuth() {
+        $.ajax({
+            url: "/checkAuth",
+            type: 'POST',
+            data: JSON.stringify({
+                token: $.cookie("authToken")
+            }),
+            contentType: "application/json",
+            //dataType: 'json',
+            success: function(result){
+                document.cookie = "authToken=" + result;
+            }});
+    }
+
+</script>
+</body>
+</html>
