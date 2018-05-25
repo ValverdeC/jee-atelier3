@@ -40,6 +40,16 @@ public class UserTest {
     }
 
     @Test
+    public void testContructorWithParameters() {
+        User user = new User(USER_ID, USER_NAME, USER_EMAIL, USER_PASSWORD);
+
+        assertEquals(USER_ID, user.getId());
+        assertEquals(USER_NAME, user.getName());
+        assertEquals(USER_EMAIL, user.getEmail());
+        assertEquals(USER_PASSWORD, user.getPassword());
+    }
+
+    @Test
     public void testSetId() {
         User user = new User();
         user.setId(USER_ID);
@@ -76,6 +86,48 @@ public class UserTest {
 
     @Test
     public void testSetWallet() {
+        User user = new User();
+        user.setWallet(USER_WALLET);
+        assertEquals(USER_WALLET, user.getWallet());
+    }
+
+    @Test
+    public void testGetId() {
+        User user = new User();
+        user.setId(USER_ID);
+        assertEquals(USER_ID, user.getId());
+    }
+
+    @Test
+    public void testGetName() {
+        User user = new User();
+        user.setName(USER_NAME);
+        assertEquals(USER_NAME, user.getName());
+    }
+
+    @Test
+    public void testGetEmail() {
+        User user = new User();
+        user.setEmail(USER_EMAIL);
+        assertEquals(USER_EMAIL, user.getEmail());
+    }
+
+    @Test
+    public void testGetPassword() {
+        User user = new User();
+        user.setPassword(USER_PASSWORD);
+        assertEquals(USER_PASSWORD, user.getPassword());
+    }
+
+    @Test
+    public void testGetToken() {
+        User user = new User();
+        user.setToken(USER_TOKEN);
+        assertEquals(USER_TOKEN, user.getToken());
+    }
+
+    @Test
+    public void testGetWallet() {
         User user = new User();
         user.setWallet(USER_WALLET);
         assertEquals(USER_WALLET, user.getWallet());
