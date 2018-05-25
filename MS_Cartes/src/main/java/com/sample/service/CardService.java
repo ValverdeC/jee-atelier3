@@ -94,6 +94,10 @@ public class CardService {
 		return this.repository.findByOwnerId(0);
 	}
 	
+	public List<Card> getCardByName(String cardName) {
+		return this.repository.findByName(cardName);
+	}
+	
 	/**
 	 * 
 	 * @param idUser
