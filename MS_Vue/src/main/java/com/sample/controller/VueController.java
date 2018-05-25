@@ -31,6 +31,11 @@ public class VueController {
         return "cardList.html";
     }
 
+    @RequestMapping("/buy")
+    public String showBuyPage() {
+        return "buyCards.html";
+    }
+
 
     @RequestMapping("/rooms")
     public String showRoomPage() {

@@ -19,6 +19,20 @@ public class CardRestController extends AbstracRestController{
         return cards.getBody();
     }
 
+    @RequestMapping(value = "available", method = RequestMethod.GET, produces = "application/json")
+    public String getCardsAvailable(){
+        ResponseEntity<String> cards = this.get(apiUrl + "card/available");
+
+        return cards.getBody();
+    }
+
+    @RequestMapping(value = "user/{userId}", method = RequestMethod.GET, produces = "application/json")
+    public String getCardsOfUser(@PathVariable int userId){
+        ResponseEntity<String> cards = this.get(apiUrl + "card/user/" + userId);
+        return cards.getBody();
+    }
+
+
     @RequestMapping(value = "{cardId}", method = RequestMethod.GET, produces = "application/json")
     public String getCardById(@PathVariable int cardId){
     	ResponseEntity<String> cards = this.get(apiUrl + "card/" + cardId);
@@ -27,13 +41,15 @@ public class CardRestController extends AbstracRestController{
 
     @RequestMapping(value = "search/{cardName}", method = RequestMethod.GET, produces = "application/json")
     public String getCardByName(@PathVariable String cardName){
-    	ResponseEntity<String> cards = this.get(apiUrl + "cards/search" + cardName);
+    	ResponseEntity<String> cards = this.get(apiUrl + "card/name/" + cardName);
         return cards.getBody();
     }
 
     @RequestMapping(value = "sell/{cardId}/{userId}", method = RequestMethod.POST, produces = "application/json")
     public String sellCard(@PathVariable int cardId, @PathVariable int userId, @RequestHeader("Authorization") String authorization){
-        this.setHeader("Authorization", authorization);
+        System.out.println("card : " + cardId + " - user : " + userId);
+        this.resetHeader();
+        //this.setHeader("Authorization", authorization);
         ResponseEntity<String> res = this.get(apiUrl + "card/sell/" + cardId + "/" + userId);
         return res.getBody();
     }
