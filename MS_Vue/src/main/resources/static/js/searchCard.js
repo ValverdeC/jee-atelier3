@@ -14,6 +14,7 @@ function cardSearch(form){
 
 	$.ajax({
 		url: 'http://localhost:8080/api/cards/search/' . name,
+		headers: {"Authorization": localStorage.getItem('token')},
 		type: 'GET',
 		//Placer info
 		complete : function(resultat, statut){

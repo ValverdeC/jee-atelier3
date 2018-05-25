@@ -23,6 +23,8 @@ function login(form){
             console.error(res);console.error(err);
         },
         success: function(resultat, status){
+            localStorage.setItem("token",response.body.token);
+            localStorage.setItem("userId",response.body.userId);
             alert("Logged in !");
             //stocker token
         }
@@ -48,6 +50,8 @@ function signup() {
 			dataType: "json",
 			data: JSON.stringify(user),
 			success: function(msg) {
+				localStorage.setItem("token",response.body.token);
+                    		localStorage.setItem("userId",response.body.userId);
 				console.log("success")
 				window.location = "/";
 			}
