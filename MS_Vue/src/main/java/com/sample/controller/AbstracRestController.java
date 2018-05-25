@@ -16,6 +16,11 @@ public class AbstracRestController {
 		return header;
 	}
 
+	public void resetHeader(){
+        header.clear();
+        header = new HttpHeaders();
+    }
+
 	public void setHeader(String key, String value) {
 		this.header.set(key, value);
 	}

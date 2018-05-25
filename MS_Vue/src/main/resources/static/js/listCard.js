@@ -9,8 +9,10 @@ $(document ).ready(function(){
 
 function getCards(){
 
+    var user = JSON.parse(localStorage.getItem('user'));
+
 	$.ajax({
-		url: 'http://localhost:8080/api/cards',
+		url: 'http://localhost:8080/api/cards/user/' + user.id,
 		headers: {"Authorization": localStorage.getItem('token')},
 		type: 'GET',
 		//Placer info
@@ -38,14 +40,14 @@ function sellCard(){
 
     var user = JSON.parse(localStorage.getItem('user'));
 
-    $.post({
+    $.ajax({
         url: 'http://localhost:8080/api/cards/sell/'+ currentCardId +'/' + user.id,
         headers: {"Authorization": localStorage.getItem('token')},
+        type : 'POST',
         success : function(resultat,status){
             $.get({
                 url : "http://localhost:8080/api/users/me",
                 headers: {"Authorization": localStorage.getItem('token')},
-               	type: 'GET',
                	success : function(resultat, statut){
                     localStorage.setItem("user",resultat);
                 },
@@ -65,7 +67,6 @@ function fillCurrentCard(cardId){
 
     for(var i = 0 ; i < cards.length ; i++){
         var c = cards[i];
-        console.log(c);
         if(c.id == cardId){
             card = c;
         }
