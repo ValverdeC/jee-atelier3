@@ -1,4 +1,5 @@
-$(document ).ready(function(){
+$(document).ready(function(){
+	
     $("#playButtonId").click(function(){
         window.location = "/rooms";
     });  

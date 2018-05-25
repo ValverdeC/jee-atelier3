@@ -34,7 +34,7 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/auth/signup")
-    private User signup(@RequestBody User user) throws EmailAlreadyUsedException {
+    private String signup(@RequestBody User user) throws EmailAlreadyUsedException {
         return userService.addUser(user);
     }
 

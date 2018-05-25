@@ -1,5 +1,5 @@
 $(document ).ready(function(){
-    
+	
 	getCards();
         
      $("#createRoomButtonId").click(function(){
