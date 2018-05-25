@@ -22,13 +22,9 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/auth/login")
-    private String login(@RequestBody Map<String, String> json) throws UserNotFoundException {
+    private String login(@RequestBody Map<String, String> json) throws UserNotFoundException, ParameterNotSpecifiedException {
         String email = json.get("email");
         String password = json.get("password");
-
-        if (email == null || password == null) {
-            return null;
-        }
 
         User user = userService.getUserByEmailAndPassword(email, password);
         return user.getToken();

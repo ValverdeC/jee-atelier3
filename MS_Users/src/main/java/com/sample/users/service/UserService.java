@@ -46,15 +46,14 @@ public class UserService {
         return user.getToken();
     }
 
-    public void updateUser(User user) {
-        userRepository.save(user);
-    }
+    public User getUserByEmailAndPassword(String email, String password) throws UserNotFoundException, ParameterNotSpecifiedException {
+        if (password == null || password.isEmpty()) {
+            throw new PasswordNotSpecifiedException();
+        }
+        if (email == null || email.isEmpty()) {
+            throw new EmailNotSpecifiedException();
+        }
 
-    public void deleteUser(String id) {
-        userRepository.delete(Integer.valueOf(id));
-    }
-
-    public User getUserByEmailAndPassword(String email, String password) throws UserNotFoundException {
         User user = userRepository.findByEmailAndPassword(email, password);
         if (user == null) {
             throw new UserNotFoundException();
@@ -73,24 +72,24 @@ public class UserService {
     public BigDecimal addToWallet(String token, BigDecimal amount) throws UserNotFoundException {
         User user = this.getUserByToken(token);
         user.addToWallet(amount);
-        user = userRepository.save(user);
+        userRepository.save(user);
         return user.getWallet();
     }
 
     public BigDecimal removeFromWallet(String token, BigDecimal amount) throws UserNotFoundException {
         User user = this.getUserByToken(token);
         user.removeFromWallet(amount);
-        user = userRepository.save(user);
+        userRepository.save(user);
         return user.getWallet();
     }
 
     private String getSaltString() {
-        String SALTCHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        String allCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         StringBuilder salt = new StringBuilder();
         SecureRandom rnd = new SecureRandom();
         while (salt.length() < 32) { // length of the random string.
-            int index = rnd.nextInt(SALTCHARS.length());
-            salt.append(SALTCHARS.charAt(index));
+            int index = rnd.nextInt(allCharacters.length());
+            salt.append(allCharacters.charAt(index));
         }
         return salt.toString();
 
