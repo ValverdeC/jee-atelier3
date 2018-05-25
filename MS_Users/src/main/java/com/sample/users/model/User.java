@@ -27,6 +27,15 @@ public class User {
         this.password = password;
     }
 
+    public User(Integer id, String name, String email, String password, String token, BigDecimal wallet) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.token = token;
+        this.wallet = wallet;
+    }
+
     public User() {
 
     }
