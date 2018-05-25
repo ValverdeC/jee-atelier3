@@ -77,6 +77,11 @@ public class CardController {
 		return this.service.getById(id);
 	}
 	
+	@RequestMapping("card/name/{name}")
+	public List<Card> getCardByName(@PathVariable  (value = "name") String name) {
+		return this.service.getCardByName(name);
+	}
+	
 	@RequestMapping("card/user/{ownerId}")
 	public List<Card> getCardByOwnerId(@PathVariable int ownerId) {
 		return this.service.getCardByOwnerId(ownerId);
@@ -93,5 +98,12 @@ public class CardController {
 		
 		this.service.buyCard(userId, cardId);
 	}
+	
+	@RequestMapping("card/sell/{cardID}/{userId}")
+	public void sell(@PathVariable (value = "userId") int userId,
+						@PathVariable (value = "cardId") int cardId) {
+		
+		this.service.sellCard(userId, cardId);
+	}	
 
 }

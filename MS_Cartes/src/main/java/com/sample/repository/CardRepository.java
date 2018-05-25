@@ -14,4 +14,5 @@ public interface CardRepository extends CrudRepository<Card, Integer> {
 	List<Card> findByOwnerIdIsNull();
 	List<Card> findByOwnerId(int ownerId);
 	List<Card> findByOwnerIdEquals(int ownerId);
+	List<Card> findByName(String cardName);
 }
