@@ -5,7 +5,7 @@ $(document).ready(function(){
     });  
     $("#buyButtonId").click(function(){
         //alert("Buy button clicked ");
-        window.location = "/search";
+        window.location = "/buy";
     });    
     $("#sellButtonId").click(function(){
         //alert("Sell button clicked ");
