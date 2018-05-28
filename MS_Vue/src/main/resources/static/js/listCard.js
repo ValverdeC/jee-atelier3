@@ -24,6 +24,7 @@ function getCards(){
        	},
        	complete : function(){
             currentCardId = 0
+            resetList();
 
             for(var i = 0 ; i < cards.length ; i++){
                 addCardToList(cards[i]);
@@ -49,10 +50,10 @@ function sellCard(){
                 url : "http://localhost:8080/api/users/me",
                 headers: {"Authorization": localStorage.getItem('token')},
                	success : function(resultat, statut){
-                    localStorage.setItem("user",resultat);
+                    localStorage.setItem("user",  JSON.stringify(resultat));
                 },
             });
-            alert("Carte vendue");
+            getCards();
         },
         error : function(resultat,status){
             alert("Une erreur est survenue");
@@ -89,6 +90,9 @@ function fillCurrentCard(cardId){
     }
 };
 
+function resetList(){
+    $("#cardListId tbody").empty();
+}
 
 function addCardToList(card){
     
@@ -112,7 +116,7 @@ function addCardToList(card){
     </div>\
     </td>";
     
-    $('#cardListId tr:last').after('<tr>'+content+'</tr>');
+    $('#cardListId tbody').append('<tr>'+content+'</tr>');
     
     
 };
