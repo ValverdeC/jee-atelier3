@@ -1,63 +1,35 @@
 package com.sample.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-
-@Entity
 public class Room {
 	
 	public Room() {
 		
 	}
 	
-	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int id;
 	
-	@NotNull
-	@Column(name = "estLancee")
 	private Boolean estLancee;
 	
-	@NotNull
-	@Column(name = "idJoueur1")
 	private int idJoueur1;
 	
-	@Column(name = "idJoueur2")
 	private int idJoueur2 = -1;
 	
-	@NotNull
-	@Column(name = "idCarteJoueur1")
 	private int idCarteJoueur1;
 	
-	@Column(name = "idCarteJoueur2")
 	private int idCarteJoueur2 = -1;
 	
-	@NotNull
-	@Column(name = "nbTour")
 	private int nbTour;
 	
-	@Column(name = "nbTourJoueur1")
 	private int nbTourJoueur1 = 0;
 	
-	@Column(name = "nbTourJoueur2")
 	private int nbTourJoueur2 = 0;
 	
-	@Column(name = "hpCarte1")
 	private int hpCarte1 = -1;
 	
-	@Column(name = "hpCarte2")
 	private int hpCarte2 = -1;
 	
-	@NotNull
-	@Column(name = "name")
 	private String name;
 	
-	@NotNull
-	@Column(name = "bet")
 	private int bet;
 	
 	
