@@ -91,14 +91,14 @@ public class CardController {
 		return this.service.getCardAvailable();
 	}
 	
-	@RequestMapping("card/buy/{cardID}/{userId}")
+	@RequestMapping("card/buy/{cardId}/{userId}")
 	public void buyCard(@PathVariable (value = "userId") int userId,
 						@PathVariable (value = "cardId") int cardId) {
 		
 		this.service.buyCard(userId, cardId);
 	}
 	
-	@RequestMapping("card/sell/{cardID}/{userId}")
+	@RequestMapping("card/sell/{cardId}/{userId}")
 	public void sell(@PathVariable (value = "userId") int userId,
 						@PathVariable (value = "cardId") int cardId) {
 		
