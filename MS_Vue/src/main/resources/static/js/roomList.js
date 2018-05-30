@@ -76,42 +76,11 @@ function getCards(){
             for(var i = 0 ; i < cards.length ; i++){
                 addCardToList(cards[i]);
             }
-
-            if(cards[currentCardId])
-                fillCurrentCard(cards[currentCardId].id);
        	}
 	});
 
 }
 
-function fillCurrentCard(cardId){
-
-    var card;
-
-    for(var i = 0 ; i < cards.length ; i++){
-        var c = cards[i];
-        console.log(c);
-        if(c.id == cardId){
-            card = c;
-        }
-    }
-
-    //FILL THE CURRENT CARD
-    if(card){
-        currentCardId = card.id;
-
-        $('#cardFamilyImgId')[0].src= card.imgUrlFamily;
-        $('#cardFamilyNameId')[0].innerText= card.family;
-        $('#cardImgId')[0].src=card.imgUrl;
-        $('#cardNameId')[0].innerText=card.name;
-        $('#cardDescriptionId')[0].innerText=card.description;
-        $('#cardHPId')[0].innerText=card.hp+" HP";
-        $('#cardEnergyId')[0].innerText=card.energy+" Energy";
-        $('#cardAttackId')[0].innerText=card.attack+" Attack";
-        $('#cardDefenceId')[0].innerText=card.defence+" Defence";
-        $('#cardPriceId')[0].innerText=card.price+" $";
-    }
-};
 
 
 function addCardToList(card){
