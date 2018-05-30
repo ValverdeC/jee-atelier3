@@ -58,9 +58,11 @@ function onRoomSelected(id){
 };
 
 function getCards(){
+	
+	var user = JSON.parse(localStorage.getItem('user'));
 
 	$.ajax({
-		url: 'http://localhost:8080/api/cards',
+		url: 'http://localhost:8080/api/cards/user/' + user.id,
 		headers: {"Authorization": localStorage.getItem('token')},
 		type: 'GET',
 		//Placer info
@@ -105,7 +107,8 @@ function addCardToList(card){
     </div>\
     </td>";
     
-    $('#cardListId tr:last').replaceWith('<tr>'+content+'</tr>');
+    //$('#cardListId tr:last').replaceWith('<tr>'+content+'</tr>');
+    $('#cardListId tbody').append('<tr>'+content+'</tr>');
     
     
 };
