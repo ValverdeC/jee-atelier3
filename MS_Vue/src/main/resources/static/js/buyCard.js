@@ -73,7 +73,6 @@ function fillCurrentCard(cardId){
     if(card){
         currentCardId = card.id;
 
-        $('#cardFamilyImgId')[0].src= card.imgUrlFamily;
         $('#cardFamilyNameId')[0].innerText= card.family;
         $('#cardImgId')[0].src=card.imgUrl;
         $('#cardNameId')[0].innerText=card.name;
